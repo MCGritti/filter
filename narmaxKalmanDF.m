@@ -1,20 +1,20 @@
 % Compensasão do erro estático com modelo preditivo
 % NARMAX com filtro de Kalman em cascata com IRR
-% otimizado por JADE. [Dataset 1]
+% otimizado por JADE. [Dataset Last]
 
 clear; clc;
 close all;
 
-load('dados/FirstDatasetWorkingData.mat');
-loadutils('narmax');
-loadutils('opt');
-loadutils('progress');
+load( 'dados/LastDatasetWorkingData.mat' );
+loadutils( 'narmax' );
+loadutils( 'opt' );
+loadutils( 'progress' );
 
 E = z - y;
 
 model = narmax(E, [u1, u2]);
-ML = 48;
-model = frols(model, [0 ML ML 2], [15 0], 100);
+ML = 24;
+model = frols(model, [0 ML ML 2], [10 1], 100);
 generatesimfunc(model, 'estmodel', 1);
 Ep = estmodel([u1, u2], E(1:ML), 0);
 
@@ -41,9 +41,9 @@ vub = [1000 1000 1000 1000 1000 1000 0.99];
 if 1
     Problem = problem([], @(x) kalmanFobj(x, [w, DZ], k1, k2, k3, dt), 7, vlb, vub, true); 
     JADE = jade;
-    JADE.PopSize = 200;
+    JADE.PopSize = 50;
     JADE.MaxGenerations = 500;
-    JADE.RefreshRate = 50;
+    JADE.RefreshRate = 1;
     Problem.Optimize(JADE);
 end
 

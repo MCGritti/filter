@@ -1,0 +1,3 @@
+/home/gritti/Documentos/filter/utils/dataFormater/build/CMakeFiles/rebuild_cache.dir
+/home/gritti/Documentos/filter/utils/dataFormater/build/CMakeFiles/dataFormater.dir
+/home/gritti/Documentos/filter/utils/dataFormater/build/CMakeFiles/edit_cache.dir

@@ -1,0 +1,1 @@
+/usr/bin/cc   -rdynamic CMakeFiles/dataFormater.dir/dataFormater.c.o  -o dataFormater 
